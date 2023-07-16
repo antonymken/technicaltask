@@ -1,18 +1,23 @@
 plugins {
     id 'com.android.library'
+    id 'com.google.dagger.hilt.android'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.technical.task.core_android'
-    compileSdk 33
+    namespace 'com.technical.task.app'
+    compileSdk rootProject.ext.sdkVersion
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
-
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.sdkVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildFeatures {
+        compose true
     }
 
     buildTypes {
@@ -22,20 +27,57 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion kotlin_compiler_extension
+        kotlinCompilerVersion kotlin_version
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation project(path: ':core')
+
+    implementation "androidx.core:core-ktx:$androidx_core"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat"
+    implementation "com.google.android.material:material:$material"
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$junitx"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+
+    //compose
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.material3:material3:$compose_material3"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    //implementation "com.google.android.material:compose-theme-adapter:$compose_adapter"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_compose_version"
+
+    implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.activity:activity-compose:$compose_activity"
+    implementation "io.coil-kt:coil-compose:$coil_compose_version"
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:$dagger_hilt"
+    kapt "com.google.dagger:hilt-compiler:$dagger_hilt"
+
+    api "com.jakewharton.timber:timber:$timber"
+
+
+}
+
+kapt {
+    correctErrorTypes true
 }
