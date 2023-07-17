@@ -16,3 +16,4 @@ rootProject.name = "Technical-task"
 include ':app'
 include ':core'
 include ':core-android'
+include ':domain'
