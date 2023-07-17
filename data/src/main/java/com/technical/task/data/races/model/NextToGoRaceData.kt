@@ -2,7 +2,7 @@ package com.technical.task.data.races.model
 
 import com.squareup.moshi.Json
 
-class NextToGoRaceDataModel(
+class NextToGoRaceData(
     @Json(name = "race_summaries")
     var races: MutableList<RaceSummary>
 )

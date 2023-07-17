@@ -17,7 +17,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
-import java.lang.Exception
 
 @RunWith(MockitoJUnitRunner::class)
 internal class GetNextToGoUseCaseTest {
@@ -54,7 +53,7 @@ internal class GetNextToGoUseCaseTest {
     fun should_emit_list_on_execute() = runTest(testDispatcher) {
 
         Mockito.`when`(mockAppCoroutineDispatchers.io).thenReturn(testDispatcher)
-        Mockito.`when`(mockRaceRepository.getNextToGo()).thenReturn(
+        Mockito.`when`(mockRaceRepository.getNextToGo(3)).thenReturn(
             listOf(
                 mockNextToGoRaceDomainModel,
                 mockNextToGoRaceDomainModel1,
@@ -76,7 +75,7 @@ internal class GetNextToGoUseCaseTest {
 
         val errorMessage = "Test Error"
         Mockito.`when`(mockAppCoroutineDispatchers.io).thenReturn(testDispatcher)
-        Mockito.`when`(mockRaceRepository.getNextToGo()).thenThrow(UnknownError(errorMessage));
+        Mockito.`when`(mockRaceRepository.getNextToGo(3)).thenThrow(UnknownError(errorMessage));
 
         getNextToGoUseCase.execute(Unit).collect { data ->
             assertEquals(errorMessage, (data as Error).exception.message)

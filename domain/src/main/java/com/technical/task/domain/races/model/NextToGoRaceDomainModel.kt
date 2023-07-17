@@ -4,7 +4,7 @@ import java.util.Date
 
 data class NextToGoRaceDomainModel(
     val meetingName: String,
-    val raceNumber: String,
+    val raceNumber: Int,
     val category: String,
-    val startTime: Date
+    val startTime: Long
 )

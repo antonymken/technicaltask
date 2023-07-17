@@ -15,7 +15,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':core')
 
-    implementation "javax.inject:javax.inject:$javax"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$coroutines_jvm"

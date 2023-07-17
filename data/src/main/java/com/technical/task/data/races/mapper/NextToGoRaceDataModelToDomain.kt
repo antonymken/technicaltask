@@ -1,4 +1,17 @@
 package com.technical.task.data.races.mapper
 
-class NextToGoRaceDataModelToDomain {
+import com.technical.task.core.mapper.InterfaceItemMapper
+import com.technical.task.data.races.model.RaceSummary
+import com.technical.task.domain.races.model.NextToGoRaceDomainModel
+
+object NextToGoRaceDataToDomain :
+    InterfaceItemMapper<RaceSummary, NextToGoRaceDomainModel> {
+    override fun transform(model: RaceSummary): NextToGoRaceDomainModel {
+        return NextToGoRaceDomainModel(
+            meetingName = model.meetingName,
+            raceNumber = model.raceNumber,
+            category = model.category,
+            startTime = model.startTime
+        )
+    }
 }
