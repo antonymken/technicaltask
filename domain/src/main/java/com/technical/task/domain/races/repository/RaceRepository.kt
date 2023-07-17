@@ -1,7 +1,7 @@
 package com.technical.task.domain.races.repository
 
-import com.technical.task.domain.races.model.NextToGoDomainModel
+import com.technical.task.domain.races.model.NextToGoRaceDomainModel
 
 interface RaceRepository {
-    fun getNextToGo(): List<NextToGoDomainModel>
+    fun getNextToGo(): List<NextToGoRaceDomainModel>
 }
