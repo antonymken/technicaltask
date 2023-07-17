@@ -1,4 +1,4 @@
-package com.technical.task.domain.races
+package com.technical.task.domain.races.model
 
 import sun.util.calendar.BaseCalendar.Date
 
