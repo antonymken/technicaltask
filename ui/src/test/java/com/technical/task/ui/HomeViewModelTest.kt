@@ -1,7 +1,5 @@
 package com.technical.task.ui
 
-import androidx.compose.runtime.movableContentWithReceiverOf
-import com.technical.task.core.dispatchers.AppCoroutineDispatchers
 import com.technical.task.core.domain.Error
 import com.technical.task.core.domain.Success
 import com.technical.task.domain.races.model.NextToGoRaceDomainModel
@@ -16,14 +14,12 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.Test
-
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mock
