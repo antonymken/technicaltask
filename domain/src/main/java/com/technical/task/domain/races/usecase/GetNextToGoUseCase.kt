@@ -19,7 +19,7 @@ class GetNextToGoUseCase @Inject constructor(
     override suspend fun executeUseCase(requestValues: Unit): Flow<DataState> {
         val emitter: Flow<DataState> = flow {
             emit(
-                Success(raceRepository.getNextToGo(5)) as DataState
+                Success(raceRepository.getNextToGo(RECORD_COUNT)) as DataState
             )
         }.catch { ex ->
             emit(
@@ -29,3 +29,5 @@ class GetNextToGoUseCase @Inject constructor(
         return emitter
     }
 }
+
+const val RECORD_COUNT = 5

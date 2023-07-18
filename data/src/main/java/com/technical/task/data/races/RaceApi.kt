@@ -1,6 +1,6 @@
 package com.technical.task.data.races
 
-import com.technical.task.data.races.model.NextToGoRaceData
+import com.technical.task.data.races.model.PayLoad
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -16,5 +16,5 @@ interface RaceApi {
         value = ["Accept: application/json"]
     )
     @GET(NEXT_TO_GO_RACE_PATH)
-    fun getNextToGo(@Path("path") path: String): Call<NextToGoRaceData>
+    fun getNextToGo(@Path("path") path: String): Call<PayLoad>
 }

@@ -11,7 +11,7 @@ object NextToGoRaceDataToDomain :
             meetingName = model.meetingName,
             raceNumber = model.raceNumber,
             category = model.category,
-            startTime = model.startTime
+            advertisedStartTime = model.startTime.seconds
         )
     }
 }

@@ -2,18 +2,28 @@ package com.technical.task.data.races.model
 
 import com.squareup.moshi.Json
 
+class PayLoad(
+    @field:Json(name = "data")
+    var data: NextToGoRaceData
+)
+
 class NextToGoRaceData(
-    @Json(name = "race_summaries")
-    var races: MutableList<RaceSummary>
+    @field:Json(name = "race_summaries")
+    var races: Map<String, RaceSummary>
 )
 
 class RaceSummary(
-    @Json(name = "category_id")
+    @field:Json(name = "category_id")
     var category: String,
-    @Json(name = "meeting_name")
+    @field:Json(name = "meeting_name")
     var meetingName: String,
-    @Json(name = "race_number")
+    @field:Json(name = "race_number")
     var raceNumber: Int,
-    @Json(name = "advertised_start")
-    var startTime: Long,
+    @field:Json(name = "advertised_start")
+    var startTime: AdvertisedStart,
+)
+
+class AdvertisedStart(
+    @field:Json(name = "seconds")
+    var seconds: Long
 )
