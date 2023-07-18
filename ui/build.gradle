@@ -1,16 +1,12 @@
-plugins {
-    id 'com.android.application'
-    id 'com.google.dagger.hilt.android'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    namespace 'com.technical.task.app'
+    namespace 'com.technical.task.data'
     compileSdk rootProject.ext.sdkVersion
 
     defaultConfig {
-        applicationId "com.technical.task.app"
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.sdkVersion
         versionCode rootProject.ext.versionCode
@@ -42,27 +38,28 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':core')
     implementation project(path: ':core-android')
     implementation project(path: ':domain')
-    implementation project(path: ':data')
-    implementation project(path: ':ui')
+
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_compose_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_compose_version"
+    implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.activity:activity-compose:$compose_activity"
+    implementation "io.coil-kt:coil-compose:$coil_compose_version"
 
     implementation "androidx.core:core-ktx:$androidx_core"
     implementation "androidx.appcompat:appcompat:$androidx_appcompat"
     implementation "com.google.android.material:material:$material"
 
-
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit-ktx:$junitx"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
-
     //hilt
     implementation "com.google.dagger:hilt-android:$dagger_hilt"
     kapt "com.google.dagger:hilt-compiler:$dagger_hilt"
-}
 
-kapt {
-    correctErrorTypes true
+    androidTestImplementation "androidx.test.ext:junit-ktx:$junitx"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:$mockito"
 }
