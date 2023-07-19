@@ -79,7 +79,7 @@ class HomeViewModelTest {
 
         assertEquals(3, testResults.size)
         assertEquals(HomeState.Default, testResults.first())
-        assertEquals(HomeState.CheckingRaces, testResults[1])
+        assertEquals(HomeState.Waiting, testResults[1])
         assertEquals(HomeState.AllCategoriesList(apiResult), testResults.last())
         job.cancel()
     }
@@ -108,8 +108,8 @@ class HomeViewModelTest {
 
         assertEquals(3, testResults.size)
         assertEquals(HomeState.Default, testResults.first())
-        assertEquals(HomeState.CheckingRaces, testResults[1])
-        assertEquals(HomeState.ApiError(error.message), testResults.last())
+        assertEquals(HomeState.Waiting, testResults[1])
+        assertEquals(HomeState.Error(error.message), testResults.last())
         job.cancel()
     }
 }

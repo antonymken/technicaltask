@@ -4,7 +4,6 @@ package com.technical.task.ui.home
 import com.technical.task.core.domain.Error
 import com.technical.task.core.domain.Success
 import com.technical.task.core_android.viewmodel.BaseViewModel
-import com.technical.task.domain.races.model.NextToGoRaceDomainModel
 import com.technical.task.domain.races.usecase.GetNextToGoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -28,17 +27,18 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun loadNextToGo() {
-        mutableStateFlow.emit(HomeState.CheckingRaces)
-        delay(500)
+        mutableStateFlow.emit(HomeState.Waiting)
+        delay(800)
         getNextToGoUseCase.execute(Unit).collect { result ->
             when (result) {
-                is Success<*> ->
+                is Success ->
                     mutableStateFlow.emit(
                         HomeState.AllCategoriesList(
-                            result.data as List<NextToGoRaceDomainModel>
+                            result.data
                         )
                     )
-                is Error -> mutableStateFlow.emit(HomeState.ApiError(result.exception.message))
+
+                is Error -> mutableStateFlow.emit(HomeState.Error(result.exception.message ?: "unknown error"))
             }
         }
     }

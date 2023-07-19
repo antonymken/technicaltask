@@ -55,8 +55,8 @@ class HomeActivity : BaseActivity() {
     fun LoadScreen(homeState: HomeState) {
 
         when (homeState) {
-            is HomeState.ApiError -> ErrorScreen()
-            is HomeState.CheckingRaces -> WaitingScreen()
+            is HomeState.Error -> ErrorScreen(homeState.message)
+            is HomeState.Waiting -> WaitingScreen()
 
             is HomeState.AllCategoriesList -> NextToGoList(homeState.list)
             is HomeState.Default -> {
@@ -71,8 +71,38 @@ class HomeActivity : BaseActivity() {
     }
 
     @Composable
-    fun ErrorScreen() {
+    fun ErrorScreen(
+        errorMessage: String,
+        cornerRadius: Dp = 16.dp,
+        paddingStart: Dp = 56.dp,
+        paddingEnd: Dp = 56.dp,
+        paddingTop: Dp = 32.dp,
+        paddingBottom: Dp = 32.dp
+    ) {
+        Dialog(
+            onDismissRequest = {
+            }
+        ) {
+            Surface(
+                tonalElevation = 4.dp,
+                shape = RoundedCornerShape(cornerRadius)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(start = paddingStart, end = paddingEnd, top = paddingTop),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
 
+                    Text(
+                        modifier = Modifier
+                            .padding(bottom = paddingBottom),
+                        text = errorMessage,
+                        style = MaterialTheme.typography.headlineMedium
+                    )
+                }
+            }
+        }
     }
 
     @Composable
@@ -82,7 +112,7 @@ class HomeActivity : BaseActivity() {
         paddingEnd: Dp = 56.dp,
         paddingTop: Dp = 32.dp,
         paddingBottom: Dp = 32.dp,
-        progressIndicatorColor: Color =  MaterialTheme.colorScheme.onTertiary ,
+        progressIndicatorColor: Color = MaterialTheme.colorScheme.onTertiary,
         progressIndicatorSize: Dp = 80.dp
     ) {
         Dialog(
@@ -158,4 +188,5 @@ class HomeActivity : BaseActivity() {
             color = MaterialTheme.colorScheme.background
         )
     }
+
 }
