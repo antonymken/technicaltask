@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor(
 
     private suspend fun loadNextToGo() {
         mutableStateFlow.emit(HomeState.CheckingRaces)
-        delay(200)
+        delay(500)
         getNextToGoUseCase.execute(Unit).collect { result ->
             when (result) {
                 is Success<*> ->
@@ -38,7 +38,6 @@ class HomeViewModel @Inject constructor(
                             result.data as List<NextToGoRaceDomainModel>
                         )
                     )
-
                 is Error -> mutableStateFlow.emit(HomeState.ApiError(result.exception.message))
             }
         }

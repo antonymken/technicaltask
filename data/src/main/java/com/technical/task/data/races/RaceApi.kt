@@ -5,16 +5,20 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RaceApi {
 
     companion object {
-        const val NEXT_TO_GO_RACE_PATH = "/rest/v1/racing/{path}"
+        const val NEXT_TO_GO_RACE_PATH = "/rest/v1/racing/{query}"
     }
 
     @Headers(
         value = ["Accept: application/json"]
     )
     @GET(NEXT_TO_GO_RACE_PATH)
-    fun getNextToGo(@Path("path") path: String): Call<PayLoad>
+    fun getNextToGo(
+        @Query("method") method: String,
+        @Query("count") count: Int
+    ): Call<PayLoad>
 }

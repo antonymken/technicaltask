@@ -14,7 +14,7 @@ import javax.inject.Inject
 class GetNextToGoUseCase @Inject constructor(
     private val raceRepository: RaceRepository,
     appCoroutineDispatchers: AppCoroutineDispatchers
-) : BaseUseCase<Unit, Flow<DataState>>(appCoroutineDispatchers) {
+) : BaseUseCase<Unit, DataState>(appCoroutineDispatchers) {
 
     override suspend fun executeUseCase(requestValues: Unit): Flow<DataState> {
         val emitter: Flow<DataState> = flow {
