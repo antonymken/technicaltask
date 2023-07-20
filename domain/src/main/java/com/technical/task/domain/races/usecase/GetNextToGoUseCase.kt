@@ -25,7 +25,7 @@ class GetNextToGoUseCase @Inject constructor(
                 emit(
                     Success(raceRepository.getNextToGo(RECORD_COUNT))
                 )
-            } catch (ex: Exception) {
+            } catch (ex: Throwable) {
                 if (ex is ApiException) {
                     emit(
                         Error(ex)

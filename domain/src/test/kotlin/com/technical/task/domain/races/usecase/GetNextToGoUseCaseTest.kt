@@ -80,7 +80,7 @@ internal class GetNextToGoUseCaseTest {
         Mockito.`when`(mockRaceRepository.getNextToGo(anyInt())).thenThrow(UnknownError(errorMessage));
 
         getNextToGoUseCase.execute(Unit).collect { data ->
-            assertEquals(errorMessage, (data as Error).exception.message)
+            assertEquals("something went wrong", (data as Error).exception.message)
         }
 
         advanceUntilIdle()
