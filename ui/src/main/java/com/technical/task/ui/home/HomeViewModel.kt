@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
                 is Success ->
                     mutableStateFlow.emit(
                         HomeState.AllCategoriesList(
-                            result.data
+                            result.data.sortedBy { it.advertisedStartTime }
                         )
                     )
 

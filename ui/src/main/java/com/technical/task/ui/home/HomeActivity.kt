@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
@@ -38,13 +37,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import com.technical.task.core_android.activity.BaseActivity
 import com.technical.task.domain.races.model.NextToGoRaceDomainModel
+import com.technical.task.ui.home.screen.NextToGoItem
+import com.technical.task.ui.home.screen.NextToGoList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -75,29 +75,6 @@ class HomeActivity : BaseActivity() {
             is HomeState.AllCategoriesList -> NextToGoList(homeState.list)
             is HomeState.Default -> {
                 //no-op
-            }
-        }
-    }
-
-    @Composable
-    fun NextToGoList(
-        list: List<NextToGoRaceDomainModel>,
-        cornerRadius: Dp = 16.dp
-    ) {
-        Surface(
-            tonalElevation = 4.dp,
-            shape = RoundedCornerShape(cornerRadius),
-            modifier = Modifier.fillMaxHeight()
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                itemsIndexed(items = list) { _, item ->
-                    NextToGoItem(item)
-                }
             }
         }
     }
@@ -219,71 +196,6 @@ class HomeActivity : BaseActivity() {
             strokeWidth = 1.dp,
             color = MaterialTheme.colorScheme.background
         )
-    }
-
-    @Composable
-    fun NextToGoItem(nextToGo: NextToGoRaceDomainModel) {
-
-        Card(
-            modifier = Modifier
-                .padding(4.dp, 4.dp)
-                .fillMaxWidth()
-        ) {
-            androidx.compose.material.Surface {
-                Row(
-                    modifier = Modifier
-                        .padding(4.dp, 4.dp)
-                ) {
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        modifier = Modifier
-                            .padding(4.dp)
-                    ) {
-                        Text(
-                            text = nextToGo.meetingName,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = nextToGo.raceNumber.toString(),
-                            style = MaterialTheme.typography.titleSmall,
-                            modifier = Modifier
-                                .padding(4.dp)
-                        )
-                        Text(
-                            text = nextToGo.advertisedStartTime.toString(),
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier
-                                .padding(4.dp)
-                        )
-                    }
-                }
-            }
-        }
-    }
-
-    @Preview
-    @Composable
-    fun NextToGoListPreview(
-        @PreviewParameter(HomeStatePreviewParameterProvider::class) list: List<NextToGoRaceDomainModel>,
-        cornerRadius: Dp = 16.dp
-    ) {
-        Surface(
-            tonalElevation = 4.dp,
-            shape = RoundedCornerShape(cornerRadius),
-            modifier = Modifier.fillMaxHeight()
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                itemsIndexed(items = list) { _, item ->
-                    NextToGoItem(item)
-                }
-            }
-        }
     }
 
 }

@@ -78,11 +78,15 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$dagger_hilt"
     kapt "com.google.dagger:hilt-compiler:$dagger_hilt"
 
-    androidTestImplementation "androidx.test.ext:junit-ktx:$junitx"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
-
     testImplementation "junit:junit:$junit"
     testImplementation "org.mockito:mockito-core:$mockito"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_coroutines_test"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_test"
+
+    //UI test
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+
+    // compos UI Tests
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
 }
