@@ -1,8 +1,8 @@
 package com.technical.task.app.di.modules
 
-import com.technical.task.data.races.RaceRepositoryImp
-import com.technical.task.data.races.di.RaceApiUrl
-import com.technical.task.domain.races.repository.RaceRepository
+import com.technical.task.data.directory.EmployeeRepositoryImp
+import com.technical.task.data.directory.di.EmployeeApiUrl
+import com.technical.task.domain.directory.repository.EmployeeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,13 +16,13 @@ internal abstract class DataModule {
 
     @Binds
     @Singleton
-    abstract fun RaceRepositoryProvider(impl: RaceRepositoryImp): RaceRepository
+    abstract fun EmployeeRepositoryProvider(impl: EmployeeRepositoryImp): EmployeeRepository
 
     companion object {
-        @RaceApiUrl
+        @EmployeeApiUrl
         @Provides
         fun provideRaceApiUrl(): String {
-            return "https://api.neds.com.au/"
+            return "https://s3.amazonaws.com/"
         }
     }
 }

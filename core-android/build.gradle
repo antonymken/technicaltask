@@ -67,7 +67,6 @@ dependencies {
 
     implementation "androidx.compose.animation:animation:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity"
-    implementation "io.coil-kt:coil-compose:$coil_compose_version"
 
     //hilt
     implementation "com.google.dagger:hilt-android:$dagger_hilt"
